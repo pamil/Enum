@@ -1,0 +1,50 @@
+{
+    "name": "pamil/enum",
+    "description": "Enum implementing the flyweight pattern.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kamil Kokot",
+            "email": "kamil@kokot.me",
+            "homepage": "http://kamil.kokot.me"
+        }
+    ],
+    "require": {
+        "myclabs/php-enum": "^1.5"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^0.9",
+        "phpstan/phpstan-phpunit": "^0.9",
+        "phpstan/phpstan-strict-rules": "^0.9",
+        "phpunit/phpunit": "^6.5",
+        "sylius-labs/coding-standard": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pamil\\Enum\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\Pamil\\Enum\\": "tests/"
+        }
+    },
+    "scripts": {
+        "check": [
+            "@analyse",
+            "@test"
+        ],
+        "fix": [
+            "vendor/bin/ecs check --ansi --no-progress-bar src tests --fix"
+        ],
+        "analyse": [
+            "vendor/bin/ecs check --ansi --no-progress-bar src tests",
+            "vendor/bin/phpstan analyse --ansi --no-progress -c phpstan.neon -l 7 src tests"
+        ],
+        "test": [
+            "composer validate --strict",
+            "vendor/bin/phpunit --colors=always"
+        ]
+    }
+}
